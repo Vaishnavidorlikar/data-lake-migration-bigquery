@@ -164,9 +164,12 @@ success = pipeline.run_pipeline(source_config, transform_config, target_config)
 python main.py --config config/config.yaml --source dataset.table --target azure_datalake
 ```
 
-### Using the Jupyter Notebook
+### Using the Google Colab Dashboard
+
+**Live Dashboard Link**: https://colab.research.google.com/github/Vaishnavidorlikar/data-lake-migration-bigquery-azure/blob/main/notebooks/live_data_colab.ipynb
 
 ```bash
+# For local development
 jupyter notebook notebooks/analysis.ipynb
 ```
 
