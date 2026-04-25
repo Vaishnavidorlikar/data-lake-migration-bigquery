@@ -309,7 +309,7 @@ pipeline:
 
 For support and questions:
 - Create an issue in the GitHub repository
-- Contact the data engineering team
+- Contact the data & AI consultant
 - Check the documentation in the `/docs` directory
 
 ## 🔄 Version History
@@ -321,4 +321,4 @@ For support and questions:
 
 ---
 
-**Built with ❤️ by the Data Engineering Team**
+**Built with ❤️ by Data & AI Consultant**
