@@ -32,7 +32,7 @@ data-lake-migration-bigquery-azure/
 │   └── azure_workbook_config.json  # Azure workbook config
 │
 ├── docs/
-│   └── ARCHITECTURE.md        # Detailed architecture documentation
+│   └── PORTFOLIO.md           # Project portfolio and consulting information
 │
 ├── requirements.txt            # Python dependencies
 ├── README.md                  # This file
