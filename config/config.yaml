@@ -118,6 +118,34 @@ pipeline:
     max_workers: 4
     memory_limit: "4GB"
 
+# Machine Learning Configuration
+ml:
+  # MLflow tracking
+  mlflow_uri: "http://localhost:5000"
+  experiment_name: "house_price_prediction"
+  
+  # Model training
+  models:
+    - name: "house_price_predictor"
+      type: "regression"
+      target_column: "SalePrice"
+      test_size: 0.2
+      cross_validation_folds: 5
+      
+  # Feature engineering
+  feature_engineering:
+    enable_age_features: true
+    enable_size_features: true
+    enable_quality_features: true
+    enable_neighborhood_encoding: true
+    
+  # Model serving
+  serving:
+    host: "0.0.0.0"
+    port: 8000
+    enable_batch_prediction: true
+    model_reload_interval: 3600  # seconds
+
 # Monitoring and Alerting
 monitoring:
   # Email notifications

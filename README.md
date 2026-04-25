@@ -24,7 +24,12 @@ data-lake-migration-bigquery-azure/
 │   ├── load.py                # Azure data loading
 │   ├── pipeline.py            # ETL pipeline orchestration
 │   ├── live_pipeline.py       # Real-time data processing
-│   └── api_server.py          # REST API server
+│   ├── api_server.py          # REST API server
+│   ├── ml_pipeline.py         # Machine learning pipeline
+│   ├── model_server.py        # ML model serving API
+│   └── models/                # ML model modules
+│       ├── __init__.py
+│       └── house_price_models.py  # House price prediction models
 │
 ├── tests/
 │   └── test_pipeline.py       # Unit and integration tests
@@ -50,6 +55,12 @@ data-lake-migration-bigquery-azure/
 - **Transform**: ⚙️ Comprehensive data cleaning, type conversion, filtering, and aggregation
 - **Load**: ☁️ Support for Azure Blob Storage, Azure Data Lake Storage Gen2, and local file systems
 - **Live Pipeline**: ⚡ Real-time data processing with WebSocket streaming
+- **AI/ML Models**: 🤖 Machine learning models for house price prediction and insights
+- **Model Training**: 🧠 Automated model training with multiple algorithms (Linear, Random Forest, XGBoost, LightGBM)
+- **Model Serving**: 🚀 RESTful API for real-time predictions and batch processing
+- **Feature Engineering**: ⚙️ Domain-specific feature creation and selection
+- **Model Explainability**: 🔍 SHAP-based feature importance and model insights
+- **MLOps**: 📊 MLflow tracking, model versioning, and experiment management
 - **Dashboards**: 📈 Interactive dashboards via Google Colab, Looker Studio, and Azure
 - **API Server**: 🌐 RESTful endpoints for dashboard data integration
 - **Configuration**: ⚙️ YAML-based configuration for different environments
@@ -217,7 +228,114 @@ python main.py --config config/config.yaml --source dataset.table --target azure
 jupyter notebook notebooks/analysis_fixed.ipynb
 ```
 
-## 🧪 Testing
+## � AI/ML Usage
+
+### House Price Prediction API
+
+**Start the Model Server:**
+```bash
+python src/model_server.py
+```
+
+**Train Models:**
+```bash
+curl -X POST http://localhost:8000/train
+```
+
+**Single Prediction:**
+```bash
+curl -X POST http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "OverallQual": 7,
+    "GrLivArea": 1800,
+    "TotalBsmtSF": 1200,
+    "FullBath": 2,
+    "HalfBath": 1,
+    "TotRmsAbvGrd": 7,
+    "YearBuilt": 2005,
+    "YearRemodAdd": 2010,
+    "GarageCars": 2,
+    "GarageArea": 500,
+    "Neighborhood": "NAmes"
+  }'
+```
+
+**Batch Prediction:**
+```bash
+curl -X POST http://localhost:8000/predict/batch \
+  -H "Content-Type: application/json" \
+  -d '{
+    "houses": [
+      {
+        "OverallQual": 7,
+        "GrLivArea": 1800,
+        "TotalBsmtSF": 1200,
+        "FullBath": 2,
+        "HalfBath": 1,
+        "TotRmsAbvGrd": 7,
+        "YearBuilt": 2005,
+        "YearRemodAdd": 2010,
+        "GarageCars": 2,
+        "GarageArea": 500,
+        "Neighborhood": "NAmes"
+      }
+    ]
+  }'
+```
+
+### Python ML Usage
+
+```python
+from src.models.house_price_models import HousePricePredictor
+import pandas as pd
+
+# Initialize predictor
+predictor = HousePricePredictor()
+
+# Load training data from BigQuery
+# (This would be your actual house price data)
+df = pd.read_csv('data/house_prices.csv')
+
+# Train models
+results = predictor.train_house_price_models(df, target_column='SalePrice')
+
+# Make predictions
+property_data = pd.DataFrame([{
+    'OverallQual': 7,
+    'GrLivArea': 1800,
+    'TotalBsmtSF': 1200,
+    'FullBath': 2,
+    'HalfBath': 1,
+    'TotRmsAbvGrd': 7,
+    'YearBuilt': 2005,
+    'YearRemodAdd': 2010,
+    'GarageCars': 2,
+    'GarageArea': 500,
+    'Neighborhood': 'NAmes'
+}])
+
+prediction = predictor.predict_price(property_data)
+insights = predictor.get_property_insights(property_data)
+
+print(f"Predicted Price: ${prediction['predicted_price']:,.2f}")
+print(f"Confidence: {prediction['confidence_score']:.2%}")
+```
+
+### MLflow Tracking
+
+**Start MLflow Server:**
+```bash
+mlflow server --host 0.0.0.0 --port 5000
+```
+
+**View Experiments:**
+- Navigate to http://localhost:5000
+- View model performance metrics
+- Compare different algorithms
+- Track feature importance
+
+## �� Testing
 
 Run the test suite:
 
