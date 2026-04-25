@@ -14,14 +14,17 @@ data-lake-migration-bigquery-azure/
 │       └── output.csv
 │
 ├── notebooks/
-│   └── analysis.ipynb         # Data analysis and exploration
+│   ├── live_data_colab.ipynb  # Interactive live dashboard
+│   └── analysis_fixed.ipynb   # Data analysis and exploration
 │
 ├── src/                       # Source code
 │   ├── __init__.py
-│   ├── extract.py             # BigQuery data extraction
+│   ├── extract.py             # Kaggle & BigQuery data extraction
 │   ├── transform.py           # Data transformation and cleaning
 │   ├── load.py                # Azure data loading
-│   └── pipeline.py            # ETL pipeline orchestration
+│   ├── pipeline.py            # ETL pipeline orchestration
+│   ├── live_pipeline.py       # Real-time data processing
+│   └── api_server.py          # REST API server
 │
 ├── tests/
 │   └── test_pipeline.py       # Unit and integration tests
@@ -94,7 +97,7 @@ The pipeline is configured to use the following real Kaggle datasets:
 - **Features**: Demographic data, education, occupation
 - **Use Case**: Income prediction analysis
 
-## �🛠️ Installation
+## ��️ Installation
 
 1. Clone the repository:
 ```bash
@@ -211,7 +214,7 @@ python main.py --config config/config.yaml --source dataset.table --target azure
 
 ```bash
 # For local development
-jupyter notebook notebooks/analysis.ipynb
+jupyter notebook notebooks/analysis_fixed.ipynb
 ```
 
 ## 🧪 Testing
