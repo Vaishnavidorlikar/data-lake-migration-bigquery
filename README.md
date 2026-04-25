@@ -164,9 +164,25 @@ success = pipeline.run_pipeline(source_config, transform_config, target_config)
 python main.py --config config/config.yaml --source dataset.table --target azure_datalake
 ```
 
-### Using the Google Colab Dashboard
+### Dashboard Access
 
-**Live Dashboard Link**: https://colab.research.google.com/github/Vaishnavidorlikar/data-lake-migration-bigquery-azure/blob/main/notebooks/live_data_colab.ipynb
+#### 📊 Google Colab Dashboard (Real-time)
+**Live Dashboard**: https://colab.research.google.com/github/Vaishnavidorlikar/data-lake-migration-bigquery-azure/blob/main/notebooks/live_data_colab.ipynb
+- Real-time data processing and visualization
+- Interactive charts with live updates
+- Mobile-friendly interface
+
+#### 📈 Looker Studio Dashboard (Business Intelligence)
+**Dashboard**: https://lookerstudio.google.com/s/[YOUR-DASHBOARD-ID]
+- Executive dashboards and KPI tracking
+- Scheduled data refresh
+- Business intelligence reporting
+
+#### 🔵 Azure Workbook Dashboard (Enterprise)
+**Workbook**: https://portal.azure.com/#blade/HubsExtension/BrowseResource/resourceType/Microsoft.Insights%2Fworkbooks
+- Enterprise analytics and monitoring
+- Advanced data visualization
+- Microsoft ecosystem integration
 
 ```bash
 # For local development
