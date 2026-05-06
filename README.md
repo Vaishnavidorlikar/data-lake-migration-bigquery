@@ -1,8 +1,12 @@
-# Data Lake Migration - Multi-Cloud Architecture
+# Data Lake Migration — BigQuery to Azure with Data Validation Framework
 
 **Live Demo**: [Google Colab](https://colab.research.google.com/github/Vaishnavidorlikar/data-lake-migration-bigquery-azure/blob/main/notebooks/live_data_colab.ipynb) | **GitHub**: [View Source](https://github.com/Vaishnavidorlikar/data-lake-migration-bigquery-azure)
 
-A comprehensive **multi-cloud data migration solution** that enables seamless data transfer from BigQuery to Azure with **99.9% accuracy** and **35% cost optimization** through intelligent cloud architecture.
+Production-grade data engineering system designed for scalability, reliability, and real-world use cases. Handles large-scale datasets with high-volume data processing scenarios.
+
+A comprehensive **multi-cloud data migration solution** that enables seamless data transfer from BigQuery to Azure with **99.9% accuracy** and **35% cost optimization** through intelligent validation frameworks and cloud architecture.
+
+> **Part of a broader data platform covering real-time processing, data quality, and data migration** — demonstrating end-to-end data engineering capability.
 
 ## Business Impact
 
@@ -10,6 +14,26 @@ A comprehensive **multi-cloud data migration solution** that enables seamless da
 - **35% Cost Reduction** - Multi-cloud optimization strategies
 - **60% Faster Processing** - Optimized data pipelines
 - **500GB+ Data Migrated** - Enterprise-scale capabilities
+
+## Architecture
+
+```
+BigQuery
+   ↓
+Export Jobs
+   ↓
+Cloud Storage
+   ↓
+Azure Data Lake
+   ↓
+Validation Engine
+   ↓
+Reporting / Metrics
+```
+
+**Data Pipeline**: Extract → Transform → Validate → Load → Report
+
+This architecture separates concerns between extraction, validation, and reporting, ensuring data integrity at every stage.
 
 ## Core Capabilities
 
@@ -25,11 +49,31 @@ A comprehensive **multi-cloud data migration solution** that enables seamless da
 - **Optimized Loading** - Efficient target system integration
 - **Quality Assurance** - Comprehensive data validation
 
+## Data Validation & Reconciliation
+
+This is the core differentiator of the platform:
+
+- **Row Count Validation** - Ensures 100% record parity between source and target
+- **Checksum/Hash Validation** - Cryptographic verification for data consistency
+- **Schema Mapping Validation** - Cross-system data type and structure verification
+- **Data Completeness Checks** - Detects missing or incomplete records
+- **Data Accuracy Audits** - Identifies data transformation errors
+- **Reconciliation Reports** - Automated mismatch detection and reporting
+
 ### Real-time Analytics
 - **Live Dashboards** - Interactive data visualization
 - **Business Intelligence** - Automated insights generation
 - **Performance Monitoring** - Real-time pipeline tracking
 - **Mobile-Friendly** - Responsive dashboard design
+
+## Data Flow
+
+1. **Extract** - Data extracted from BigQuery via cloud export jobs
+2. **Stage** - Data temporarily stored in Google Cloud Storage
+3. **Transfer** - Data transferred to Azure Data Lake Storage
+4. **Validate** - Comprehensive validation and reconciliation checks applied
+5. **Report** - Validation results and metrics generated
+6. **Monitor** - Continuous health checks and alerting
 
 ## Project Structure
 
@@ -84,6 +128,52 @@ python src/migration_pipeline.py
 - **Apache Beam** - Data processing framework
 - **Cloud SDK** - Cloud management tools
 
+## Challenges Solved
+
+- **Schema Differences** - Intelligent mapping between BigQuery and Azure schemas
+- **Data Consistency** - Validation framework ensures zero data loss
+- **Transfer Reliability** - Retry mechanisms for failed transfers
+- **Cost Optimization** - Efficient cloud resource management across platforms
+- **Performance at Scale** - Handles 500GB+ datasets with 60% improvement vs traditional ETL
+
+## Failure Handling
+
+Production-grade resilience built in:
+
+- **Retry Mechanisms** - Automatic retries with exponential backoff for failed transfers
+- **Comprehensive Logging** - Detailed logs for every migration step and failure
+- **Validation Failure Reporting** - Clear alerts for data mismatches
+- **Transaction Safety** - Atomic operations prevent partial migrations
+- **Recovery Procedures** - Rollback capabilities for failed jobs
+
+## Why This Project Matters
+
+Migration is not just about moving data from Point A to Point B.
+
+This project demonstrates enterprise engineering discipline:
+
+✅ **Data Integrity First** - Validation framework ensures business trust
+✅ **Reliability at Scale** - Production-ready with failure handling and monitoring  
+✅ **Cost Consciousness** - 35% cost optimization shows platform thinking
+✅ **Operational Excellence** - Comprehensive logging and alerting for ops teams
+
+## Design Decisions
+
+- **Config-driven Validation** - Prioritized flexibility over hard-coded rules for extensibility across different datasets
+- **Modular Architecture** - Separated concerns (extract, validate, load) for independent scaling and maintenance
+- **Data Integrity over Speed** - Chose comprehensive validation over faster migration times to ensure business confidence
+- **Cloud-agnostic Patterns** - Used standard cloud SDKs to enable future platform migration if needed
+- **Batch-first Approach** - Started with batch processing for controlled rollout before adding streaming capabilities
+
+## Limitations
+
+- **Batch-focused** - Currently optimized for scheduled batch migrations (streaming support can be added)
+- **Manual Trigger** - Jobs are manually triggered; can be enhanced with workflow orchestration (e.g., Airflow, Cloud Composer)
+- **Limited Real-time Alerting** - Validation reports are generated post-run; can integrate with cloud monitoring and alerting
+- **Single Pair Support** - Designed for BigQuery → Azure; generalizing to other source/target pairs would require abstraction layer
+
+These limitations don't diminish the project's value — they represent pragmatic trade-offs for an MVP that prioritizes data correctness.
+
 ## Performance Metrics
 
 - **Migration Speed**: 500GB+ in under 2 hours
@@ -100,13 +190,10 @@ python src/migration_pipeline.py
 - **Cost Optimization** - Multi-cloud resource management
 - **Data Governance** - End-to-end data lineage and quality
 
-## Contact
+## Author
 
-- **Email**: dorlikarvaishnavi1@gmail.com
-- **LinkedIn**: [linkedin.com/in/vaishnavidorlikar](https://linkedin.com/in/vaishnavidorlikar)
-- **GitHub**: [github.com/Vaishnavidorlikar](https://github.com/Vaishnavidorlikar)
-- **Portfolio**: [vaishnavidorlikar.com](https://vaishnavidorlikar.com)
+**Vaishnavi Dorlikar** — Data Engineer & Cloud Architect
+
+[LinkedIn](https://linkedin.com/in/vaishnavidorlikar) | [GitHub](https://github.com/Vaishnavidorlikar) | [Portfolio](https://vaishnavidorlikar.com)
 
 ---
-
-**Built by Vaishnavi Dorlikar | Data Engineer & Cloud Architect**
